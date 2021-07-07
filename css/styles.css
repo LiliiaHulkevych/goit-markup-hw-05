@@ -9,6 +9,10 @@
 /* колір рамки #EEEEEE */
 /* колір іконок соц мереж #AFB1B8 */
 /* колір фону іконок в футері rgba(255, 255, 255, 0.1); */
+/* колір фону для заголовків rgba(47, 48, 58, 0.8); */
+/* колір бекдропа rgba(0, 0, 0, 0.2); */
+/* колір рамки кнопки  rgba(0, 0, 0, 0.1); */
+/* колір фону оверлей rgba(33, 150, 243, 0.9); */
 
 html {
     box-sizing: border-box;
@@ -28,6 +32,10 @@ html {
     --border-color: #EEEEEE;
     --social-icon-color: #AFB1B8;
     --bg-icon-color:  rgba(255, 255, 255, 0.1);
+    --bg-title-color: rgba(47, 48, 58, 0.8);
+    --bg-modal: rgba(0, 0, 0, 0.2);
+    --border-modal-color: rgba(0, 0, 0, 0.1);
+    --bg-overlay: rgba(33, 150, 243, 0.9);
 }
 
 body  {
@@ -114,6 +122,7 @@ img{
 }
 
 .site-nav .link {
+    position: relative;
     display: block;
     padding-top: 32px;
     padding-bottom: 32px;
@@ -124,6 +133,19 @@ img{
     font-weight: 500;
     line-height: 1.14;
     letter-spacing: 0.02em;
+}
+
+
+
+.active::after{
+    position: absolute;
+    bottom: 0%;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
 }
 
 .site-nav .link:hover, 
@@ -270,7 +292,8 @@ width: 70px;
 height: 70px;
 } 
 
-.feature-list .title {
+
+.feature-list .title{
     margin-bottom: 10px;
 
     font-size: inherit;
@@ -302,6 +325,28 @@ height: 70px;
 
 .action .item:not(:last-child) {
     margin-right: 30px;
+}
+
+.div-img{
+    position: relative;
+}
+
+.action .title {
+    position: absolute;
+    bottom: 0;
+    padding-top: 27px;
+    padding-bottom: 27px;
+    text-align: center;
+
+    display: block;
+    width: 370px;
+    height: 70px;
+
+    font-size: inherit;
+    line-height: 1.14;
+    text-transform: uppercase;
+    color: var(--primary-white-color);
+    background-color: var(--bg-title-color);
 }
 
 /* Команда */
@@ -509,6 +554,49 @@ height: 70px;
 background-color: var(--accent);
 }
 
+/* МОДАЛЬНЕ ВІКНО */
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-modal);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 528px;
+    height: 581px;
+    background-color: var(--primary-white-color);
+}
+
+.close-modal {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border-color: var(--border-modal-color);
+    background-color: var(--primary-white-color);
+
+}
+
+.close-modal::after {
+    content: '\2716';
+}
+
 /* -------- PORTFOLIO --------- */
 
 .menu-list {
@@ -593,4 +681,26 @@ background-color: var(--accent);
     line-height: 1.87;
 }
 
+.div-image {
+    position: relative;
+}
 
+.overlay {
+    padding: 63px 24px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+
+    font-size: 18px;
+    line-height: 1.56;
+    color: var(--primary-white-color);
+    background-color: var(--bg-overlay);
+}
+
+.example-list .item:hover .overlay{
+    opacity: 1;
+}
